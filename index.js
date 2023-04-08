@@ -35,6 +35,18 @@ mongoose
     console.error(err);
   });
 
+//* CORS applied
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin , X-Requested-With, Content-Type , Accept"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE");
+
+  next();
+});
+
 //* Start server
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
